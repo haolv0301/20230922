@@ -384,8 +384,24 @@ public class treatment {
 
         }
     }
-    //=================================================================================
-
+//=================================================================================
+public  String codeToName(String code){
+        String name;stock set =new stock();
+        Path path1 = Paths.get("D:\\java project\\Learning\\hau0916\\src\\stock.csv");
+        try (BufferedReader reader = Files.newBufferedReader(path1, StandardCharsets.UTF_8)) {
+            String[] charLine;
+            for (String line; (line = reader.readLine()) != null; ) {
+                charLine = line.split("\t");
+                if (code.equals(charLine[0])) {
+                    name=charLine[1];
+                    set.setProduct_name(name);
+                    break;
+                }
+            }
+        } catch (IOException ex) {
+            System.out.println("err");
+        }return set.getProduct_name();
+    }
 
     //=================================================================================
     public boolean isWorkDay(LocalDateTime userDateTime) {
